@@ -389,7 +389,7 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public int size() {
-        return 0;
+        return size; // Return the size of the list which is updated on every add/remove operation.
     }
 
     @Override
