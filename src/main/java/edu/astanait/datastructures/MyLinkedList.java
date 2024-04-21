@@ -3,26 +3,31 @@ package edu.astanait.datastructures;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class MyLinkedList<T> implements MyList<T> {
-    private static class ListNode<T> {
-        T data;          // Data for the node
-        ListNode<T> next;     // Reference to the next node in the list
-        ListNode<T> prev;     // Reference to the previous node in the list
+public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
+    private static class ListNode<T extends Comparable<T>> implements Comparable<ListNode<T>> {
+        T data;
+        ListNode<T> next;
+        ListNode<T> prev;
 
-        // Constructor to create a new node with data and no next or previous node (end of list)
         ListNode(T data) {
             this.data = data;
             this.next = null;
             this.prev = null;
         }
 
-        // Constructor to create a new node with data and references to next and previous nodes
         ListNode(T data, ListNode<T> next, ListNode<T> prev) {
             this.data = data;
             this.next = next;
             this.prev = prev;
         }
+
+        @Override
+        public int compareTo(ListNode<T> other) {
+            // Delegate to T's compareTo method
+            return this.data.compareTo(other.data);
+        }
     }
+
 
     private ListNode<T> head;
     private ListNode<T> tail;
@@ -215,7 +220,43 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void sort() {
+        if (head == null || head.next == null) {
+            return; // List is already sorted or empty.
+        }
 
+        // New sorted (dummy) list
+        ListNode<T> sorted = new ListNode<>(null); // Dummy head
+
+        while (head != null) {
+            // Remove the first node from the original list
+            ListNode<T> current = head;
+            head = head.next;
+
+            // Find the correct place to insert the node in the sorted list
+            ListNode<T> sortedCurrent = sorted;
+            while (sortedCurrent.next != null && sortedCurrent.next.data.compareTo(current.data) < 0) {
+                sortedCurrent = sortedCurrent.next;
+            }
+
+            // Insert the node in the sorted list
+            current.next = sortedCurrent.next;
+            if (sortedCurrent.next != null) {
+                sortedCurrent.next.prev = current;
+            }
+            sortedCurrent.next = current;
+            current.prev = sortedCurrent;
+
+            // Update tail if necessary
+            if (sortedCurrent == tail || tail == null) {
+                tail = current;
+            }
+        }
+
+        // Replace the old list with the sorted list (skipping the dummy head)
+        head = sorted.next;
+        if (head != null) {
+            head.prev = null;
+        }
     }
 
     @Override
