@@ -301,8 +301,31 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public int lastIndexOf(Object object) {
-        return 0;
+        int index = size - 1;
+        ListNode<T> current = tail;
+
+        // If the object is null, look for a null element from the end of the list.
+        if (object == null) {
+            while (current != null) {
+                if (current.data == null) {
+                    return index;
+                }
+                current = current.prev;
+                index--;
+            }
+        } else {
+            // If the object is not null, look for an element equal to the object from the end.
+            while (current != null) {
+                if (object.equals(current.data)) {
+                    return index;
+                }
+                current = current.prev;
+                index--;
+            }
+        }
+        return -1; // Return -1 if the object is not found.
     }
+
 
     @Override
     public boolean exists(Object object) {
