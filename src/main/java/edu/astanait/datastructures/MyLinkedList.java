@@ -394,6 +394,24 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new Iterator<T>() {
+            private ListNode<T> current = head;  // Start with the first element in the list.
+
+            @Override
+            public boolean hasNext() {
+                return current != null;  // Return true if there is another element next.
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();  // Throw an exception if there is no next element.
+                }
+                T data = current.data;  // Retrieve the data from the current node.
+                current = current.next;  // Move to the next node.
+                return data;  // Return the data.
+            }
+        };
     }
+
 }
