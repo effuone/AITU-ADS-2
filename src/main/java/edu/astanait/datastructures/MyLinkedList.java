@@ -30,7 +30,17 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void add(T item) {
-
+        // If the list is empty, add the new node as the head and tail.
+        if (head == null) {
+            head = new ListNode<>(item);
+            tail = head;
+        } else {
+            // Otherwise, add the new node after the tail and update the tail reference.
+            ListNode<T> newNode = new ListNode<>(item, null, tail);
+            tail.next = newNode;
+            tail = newNode;
+        }
+        size++;
     }
 
     @Override
@@ -40,7 +50,27 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void add(int index, T item) {
-
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
+        // If adding at the start, use addFirst method.
+        if (index == 0) {
+            addFirst(item);
+        } else if (index == size) {
+            // If adding at the end, use addLast method.
+            addLast(item);
+        } else {
+            // Otherwise, find the node currently at the specified index.
+            ListNode<T> current = head;
+            for (int i = 0; i < index; i++) {
+                current = current.next;
+            }
+            // Create a new node and re-link the references.
+            ListNode<T> newNode = new ListNode<>(item, current, current.prev);
+            current.prev.next = newNode;
+            current.prev = newNode;
+            size++;
+        }
     }
 
     @Override
