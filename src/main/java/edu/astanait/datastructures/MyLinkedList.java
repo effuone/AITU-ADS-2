@@ -88,7 +88,11 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public T getLast() {
-        return null;
+        // If the list is empty, throw an exception
+        if (tail == null) {
+            throw new NoSuchElementException();
+        }
+        return tail.data; // Return the data of the last node
     }
 
     @Override
