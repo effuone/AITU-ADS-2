@@ -32,6 +32,10 @@ To see how to use these data structures, you can run the provided JUnit tests. F
 3. **Run Tests**:
     - To run all tests, right-click on the `src/test/java` directory and select `Run 'All Tests'`.
     - To run individual tests, navigate to a specific test class, right-click, and select `Run '<test class name>'`.
+4. **Check if the tests are the same**:
+   - You should get something like this
+   - ![image](https://github.com/effuone/AITU-ADS-2/assets/65224356/067a7bb8-57d5-41d3-9d01-de38d957a242)
+
 
 ## Implementation Details
 Each class is documented to explain how the specific data structure is implemented using `MyArrayList` or `MyLinkedList` as the underlying data structure. Consideration was given to the most suitable physical data structure for each logical data structure based on their typical use cases and operations.
