@@ -1,6 +1,7 @@
 package edu.astanait.datastructures;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class MyLinkedList<T> implements MyList<T> {
     private static class ListNode<T> {
@@ -78,7 +79,11 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public T getFirst() {
-        return null;
+        // If the list is empty, throw an exception
+        if (head == null) {
+            throw new NoSuchElementException();
+        }
+        return head.data; // Return the data of the first node
     }
 
     @Override
