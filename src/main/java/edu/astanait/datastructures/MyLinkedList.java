@@ -138,7 +138,31 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+        // Special cases: remove first or last
+        if (index == 0) {
+            removeFirst();
+            return;
+        } else if (index == size - 1) {
+            removeLast();
+            return;
+        }
 
+        // Find the node to remove
+        ListNode<T> current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+
+        // Unlink the node from the list
+        current.prev.next = current.next;
+        current.next.prev = current.prev;
+        current.next = null; // Help garbage collection
+        current.prev = null; // Help garbage collection
+
+        size--;
     }
 
     @Override
