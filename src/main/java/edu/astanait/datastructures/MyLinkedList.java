@@ -167,7 +167,26 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void removeFirst() {
+        if (head == null) {
+            throw new NoSuchElementException();
+        }
 
+        // Move the head pointer to the next node, which will become the new head
+        ListNode<T> nextNode = head.next;
+
+        if (nextNode != null) {
+            // If there's a next node, update its prev pointer to null
+            nextNode.prev = null;
+        } else {
+            // If there's no next node, the list is now empty and tail should also be null
+            tail = null;
+        }
+
+        // Help garbage collection
+        head.next = null;
+        head = nextNode;
+
+        size--;
     }
 
     @Override
