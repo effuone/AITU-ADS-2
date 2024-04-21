@@ -54,7 +54,26 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public T get(int index) {
-       return null;
+        // Check for a valid index
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        ListNode<T> current;
+        // If the index is in the first half of the list, start from the head
+        if (index < size / 2) {
+            current = head;
+            for (int i = 0; i < index; i++) {
+                current = current.next; // Move to the next node
+            }
+        } else {
+            // If the index is in the second half of the list, start from the tail
+            current = tail;
+            for (int i = size - 1; i > index; i--) {
+                current = current.prev; // Move to the previous node
+            }
+        }
+        return current.data;
     }
 
     @Override
