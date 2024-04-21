@@ -354,8 +354,19 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Object[] result = new Object[size]; // Initialize an array of Object with the size of the linked list.
+        int i = 0; // Start with the first index.
+        ListNode<T> current = head; // Start traversal from the head of the list.
+
+        // Traverse the list and fill the array.
+        while (current != null) {
+            result[i++] = current.data; // Assign the data from the current node to the array.
+            current = current.next; // Move to the next node.
+        }
+
+        return result; // Return the filled array.
     }
+
 
     @Override
     public void clear() {
