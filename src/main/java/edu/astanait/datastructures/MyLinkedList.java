@@ -191,7 +191,26 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void removeLast() {
+        if (tail == null) {
+            throw new NoSuchElementException();
+        }
 
+        // Move the tail pointer to the previous node, which will become the new tail
+        ListNode<T> prevNode = tail.prev;
+
+        if (prevNode != null) {
+            // If there's a previous node, update its next pointer to null
+            prevNode.next = null;
+        } else {
+            // If there's no previous node, the list is now empty and head should also be null
+            head = null;
+        }
+
+        // Help garbage collection
+        tail.prev = null;
+        tail = prevNode;
+
+        size--;
     }
 
     @Override
