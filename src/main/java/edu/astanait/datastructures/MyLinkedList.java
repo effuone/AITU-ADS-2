@@ -75,7 +75,17 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void addFirst(T item) {
-
+        // Create a new node that points to the current head.
+        ListNode<T> newNode = new ListNode<>(item, head, null);
+        // If the list is empty, head and tail should both point to the new node.
+        if (head == null) {
+            tail = newNode;
+        } else {
+            // Otherwise, update the previous head to point back to the new node.
+            head.prev = newNode;
+        }
+        head = newNode;
+        size++;
     }
 
     @Override
