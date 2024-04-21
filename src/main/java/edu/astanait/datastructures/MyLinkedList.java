@@ -90,7 +90,8 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void addLast(T item) {
-
+        // This method is the same as the add method which adds the item at the end.
+        add(item);
     }
 
     @Override
