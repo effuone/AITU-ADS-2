@@ -35,3 +35,30 @@ To see how to use these data structures, you can run the provided JUnit tests. F
 
 ## Implementation Details
 Each class is documented to explain how the specific data structure is implemented using `MyArrayList` or `MyLinkedList` as the underlying data structure. Consideration was given to the most suitable physical data structure for each logical data structure based on their typical use cases and operations.
+
+## Time and space complexity comparison table
+| Data Structure | Operation   | Time Complexity | Space Complexity |
+|----------------|-------------|-----------------|------------------|
+| MyArrayList    | Add         | O(1) amortized  | O(n)             |
+|                | Get         | O(1)            | O(1)             |
+|                | Remove      | O(n)            | O(1)             |
+|                | Set         | O(1)            | O(1)             |
+| MyLinkedList   | Add         | O(1) at ends    | O(1)             |
+|                | Get         | O(n)            | O(1)             |
+|                | Remove      | O(1) at ends    | O(1)             |
+|                | Set         | O(n)            | O(1)             |
+| MyStack        | Push        | O(1)            | O(1)             |
+|                | Pop         | O(1)            | O(1)             |
+|                | Peek        | O(1)            | O(1)             |
+| MyQueue        | Enqueue     | O(1)            | O(1)             |
+|                | Dequeue     | O(1)            | O(1)             |
+|                | Peek        | O(1)            | O(1)             |
+| MyMinHeap      | Add         | O(log n)        | O(1)             |
+|                | Extract Min | O(log n)        | O(1)             |
+|                | Peek        | O(1)            | O(1)             |
+
+## General explanatory notes
+1. **Amortized Time Complexity for MyArrayList Add**: This is noted as amortized because while most additions are O(1), occasionally (when the underlying array needs to be resized) the cost is O(n), and this cost is spread out over many operations.
+2. **LinkedList Operations at Ends**: Operations like add/remove at the ends of a linked list are O(1) because they only involve updating a few pointers. For operations at specific indices (not at ends), the complexity becomes O(n) because it may require traversing the list from the start to the index.
+3. **Stack and Queue**: All primary operations are O(1) because they deal with elements only at one end or both ends without intermediate traversal.
+4. **MinHeap Operations**: Adding and removing elements (extract min) have a logarithmic complexity due to the heapify process that maintains the heap structure
