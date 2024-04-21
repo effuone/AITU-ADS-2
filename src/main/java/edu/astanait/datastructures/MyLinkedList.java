@@ -50,7 +50,19 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public void set(int index, T item) {
+        // Check for a valid index
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
 
+        // Find the node to be updated
+        ListNode<T> current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+
+        // Update the data of the node
+        current.data = item;
     }
 
     @Override
