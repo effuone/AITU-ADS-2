@@ -36,6 +36,8 @@ To see how to use these data structures, you can run the provided JUnit tests. F
    - You should get something like this
    - ![image](https://github.com/effuone/AITU-ADS-2/assets/65224356/067a7bb8-57d5-41d3-9d01-de38d957a242)
    - Alternatively, if you run into setup issues, I've provided Github Action workflow to check if all tests are passed, check `Actions` summary details to see that everything works fine.
+   - ![image](https://github.com/effuone/AITU-ADS-2/assets/65224356/ac43f7b9-ca08-416d-ab48-3cdf115ba24d)
+
 
 
 ## Implementation Details
