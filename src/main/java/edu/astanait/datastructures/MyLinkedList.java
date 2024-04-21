@@ -370,8 +370,22 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public void clear() {
+        // Iterate through the list and remove all references
+        ListNode<T> current = head;
+        while (current != null) {
+            ListNode<T> next = current.next;
+            current.data = null; // Help garbage collection by clearing the data reference
+            current.next = null; // Clear reference to the next node
+            current.prev = null; // Clear reference to the previous node
+            current = next;      // Move to the next node
+        }
 
+        // Finally, reset head and tail to null to fully clear the list
+        head = null;
+        tail = null;
+        size = 0; // Reset the size of the list
     }
+
 
     @Override
     public int size() {
