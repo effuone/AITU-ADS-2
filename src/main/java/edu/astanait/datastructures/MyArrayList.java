@@ -12,7 +12,8 @@ public class MyArrayList<T> implements MyList<T> {
         size = 0;
     }
 
-    // Constructor with specified initial capacity; throws IllegalArgumentException if capacity is negative.
+    // Constructor with specified initial capacity; throws IllegalArgumentException
+    // if capacity is negative.
     public MyArrayList(int initialCapacity) {
         if (initialCapacity < 0) {
             throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
@@ -48,7 +49,8 @@ public class MyArrayList<T> implements MyList<T> {
         size++;
     }
 
-    // Set the item at the given index to the given value. Throws IndexOutOfBoundsException if index is out of bounds.
+    // Set the item at the given index to the given value. Throws
+    // IndexOutOfBoundsException if index is out of bounds.
     @Override
     public void set(int index, T item) {
         if (index < 0 || index >= size) {
@@ -57,7 +59,8 @@ public class MyArrayList<T> implements MyList<T> {
         array[index] = item;
     }
 
-    // Add the given item at the given index. Shifts subsequent elements to the right. Expands the array if necessary.
+    // Add the given item at the given index. Shifts subsequent elements to the
+    // right. Expands the array if necessary.
     @Override
     public void add(int index, T item) {
         if (index < 0 || index > size) {
@@ -84,13 +87,15 @@ public class MyArrayList<T> implements MyList<T> {
         add(0, item);
     }
 
-    // Convenience method to add an item at the end of the list (same as add(T item)).
+    // Convenience method to add an item at the end of the list (same as add(T
+    // item)).
     @Override
     public void addLast(T item) {
         add(item);
     }
 
-    // Get the item at the given index. Throws IndexOutOfBoundsException if index is out of bounds.
+    // Get the item at the given index. Throws IndexOutOfBoundsException if index is
+    // out of bounds.
     @Override
     public T get(int index) {
         if (index < 0 || index >= size) {
@@ -99,25 +104,22 @@ public class MyArrayList<T> implements MyList<T> {
         return array[index];
     }
 
-    // Get the first item in the list. Throws IndexOutOfBoundsException if the list is empty.
+    // Get the first item in the list. Throws IndexOutOfBoundsException if the list
+    // is empty.
     @Override
     public T getFirst() {
-        if (size == 0) {
-            throw new IndexOutOfBoundsException();
-        }
-        return array[0];
+        return this.get(0);
     }
 
-    // Get the last item in the list. Throws IndexOutOfBoundsException if the list is empty.
+    // Get the last item in the list. Throws IndexOutOfBoundsException if the list
+    // is empty.
     @Override
     public T getLast() {
-        if (size == 0) {
-            throw new IndexOutOfBoundsException();
-        }
-        return array[size - 1];
+        return this.get(this.size - 1);
     }
 
-    // Remove the item at the start of the list. Throws IndexOutOfBoundsException if the list is empty.
+    // Remove the item at the start of the list. Throws IndexOutOfBoundsException if
+    // the list is empty.
     @Override
     public void removeFirst() {
         if (size == 0) {
@@ -130,7 +132,8 @@ public class MyArrayList<T> implements MyList<T> {
         size--;
     }
 
-    // Remove the item at the given index. Throws IndexOutOfBoundsException if index is out of bounds.
+    // Remove the item at the given index. Throws IndexOutOfBoundsException if index
+    // is out of bounds.
     @Override
     public void remove(int index) {
         if (index < 0 || index >= size) {
@@ -143,7 +146,8 @@ public class MyArrayList<T> implements MyList<T> {
         size--;
     }
 
-    // Remove the last item in the list. Throws IndexOutOfBoundsException if the list is empty.
+    // Remove the last item in the list. Throws IndexOutOfBoundsException if the
+    // list is empty.
     @Override
     public void removeLast() {
         if (size == 0) {
@@ -153,7 +157,8 @@ public class MyArrayList<T> implements MyList<T> {
         size--;
     }
 
-    // Sorts the list using a bubble sort algorithm. Assumes T implements Comparable<T>.
+    // Sorts the list using a bubble sort algorithm. Assumes T implements
+    // Comparable<T>.
     @Override
     public void sort() {
         for (int i = 0; i < size - 1; i++) {
@@ -168,7 +173,8 @@ public class MyArrayList<T> implements MyList<T> {
         }
     }
 
-    // Return the index of the first occurrence of the specified object or -1 if not found.
+    // Return the index of the first occurrence of the specified object or -1 if not
+    // found.
     @Override
     public int indexOf(Object object) {
         for (int i = 0; i < size; i++) {
@@ -179,7 +185,8 @@ public class MyArrayList<T> implements MyList<T> {
         return -1;
     }
 
-    // Return the index of the last occurrence of the specified object or -1 if not found.
+    // Return the index of the last occurrence of the specified object or -1 if not
+    // found.
     @Override
     public int lastIndexOf(Object object) {
         for (int i = size - 1; i >= 0; i--) {
